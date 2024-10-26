@@ -6,7 +6,11 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import android.os.Build
 import com.scottyab.rootbeer.RootBeer
-
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.NetworkInfo
+import androidx.annotation.RequiresApi
+ 
 class FlutterFullSecurityPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
     private lateinit var channel: MethodChannel
@@ -23,6 +27,7 @@ class FlutterFullSecurityPlugin : FlutterPlugin, MethodChannel.MethodCallHandler
             "getProxySetting" -> result.success(getProxySetting())
             "isEmulatorDevice" -> result.success(isEmulatorDevice())
             "isRootedDevice" -> result.success(isRootedDevice())
+            "isVpnActive" -> result.success(isVpnActive())
             else -> result.notImplemented()
         }
     }
@@ -60,4 +65,13 @@ class FlutterFullSecurityPlugin : FlutterPlugin, MethodChannel.MethodCallHandler
                 Build.PRODUCT.contains("emulator") ||
                 Build.PRODUCT.contains("simulator")
     }
+
+ @RequiresApi(Build.VERSION_CODES.M)
+ private fun isVpnActive(): Boolean {
+    val manager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
+    val activeNetwork = manager?.activeNetwork
+    val networkCapabilities = manager?.getNetworkCapabilities(activeNetwork)
+
+    return networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) ?: false
+  }
 }

@@ -6,8 +6,14 @@ class FlutterFullSecurity {
   final MethodChannel _channel = const MethodChannel('flutter_full_security');
 
   Future<bool> get isAppFullSecurity async {
-    var results =
-        await Future.wait([isProxyApply, isRootedDevice, isEmulatorDevice]);
+    var results = await Future.wait(
+      [
+        isProxyApply,
+        isRootedDevice,
+        isEmulatorDevice,
+        isVpnActive,
+      ],
+    );
     return !results.contains(true);
   }
 
@@ -36,6 +42,11 @@ class FlutterFullSecurity {
     return _channel
         .invokeMapMethod<String, dynamic>('getProxySetting')
         .then((e) => ProxySetting._fromMap(e ?? {}).isProxyApply);
+  }
+
+  Future<bool> get isVpnActive async {
+    final isActive = await _channel.invokeMethod('isVpnActive');
+    return isActive ?? false;
   }
 }
 

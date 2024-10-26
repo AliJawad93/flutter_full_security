@@ -43,6 +43,8 @@ class _MyAppState extends State<MyApp> {
       log("message r : $r");
       var f = await _flutterFullSecurityPlugin.isAppFullSecurity;
       log("message f : $f");
+      var v = await _flutterFullSecurityPlugin.isVpnActive;
+      log("message v : $v");
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
