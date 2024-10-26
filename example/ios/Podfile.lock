@@ -1,0 +1,35 @@
+PODS:
+  - DTTJailbreakDetection (0.4.0)
+  - Flutter (1.0.0)
+  - flutter_full_security (0.0.1):
+    - DTTJailbreakDetection
+    - Flutter
+  - integration_test (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_full_security (from `.symlinks/plugins/flutter_full_security/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+
+SPEC REPOS:
+  trunk:
+    - DTTJailbreakDetection
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_full_security:
+    :path: ".symlinks/plugins/flutter_full_security/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+
+SPEC CHECKSUMS:
+  DTTJailbreakDetection: 5e356c5badc17995f65a83ed9483f787a0057b71
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_full_security: eab8237568fff1012c2dc0ec460431547c1e134a
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.15.2
